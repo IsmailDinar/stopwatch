@@ -13,23 +13,24 @@ controlBtnText = 'Start';
   millisecond = 0;
   start = false;
   pause = false;
-  x = 10;
+  x = 1;
   intervalId;
 
   reset() {
     this.start = false;
     this.pause = false;
-    this.x = 10;
+    this.x = 1;
     this.controlBtnText = 'Start';
     this.hour = this.minute = this.second = this.millisecond = 0;
+    clearInterval(this.intervalId);
   }
 
   onStart() {
-    this.x = 10;
+    this.x = 1;
     this.start = true;
     this.intervalId = setInterval(() => {
       this.updateTime();
-    }, 100);
+    }, 10);
   }
 
   onPause() {
@@ -42,13 +43,13 @@ controlBtnText = 'Start';
     this.pause = false;
     this.intervalId = setInterval(() => {
       this.updateTime();
-    }, 100);
+    }, 10);
   }
 
   updateTime() {
     this.millisecond += this.x;
 
-    if (this.millisecond > 90) {
+    if (this.millisecond > 99) {
       this.millisecond = 0;
       this.second++;
     }
